@@ -27,4 +27,22 @@ public class VeiculoService {
     public List<Veiculo> listarTodos() {
         return veiculoRepository.findAll();
     }
+
+    public Veiculo atualizar(String placa, Veiculo veiculoAtualizado ){
+        
+        Veiculo veiculo = veiculoRepository.findByPlacaIgnoreCase(placa).orElseThrow(() -> new RuntimeException("Veículo não encontrado."));
+        
+        veiculo.setProprietario(veiculoAtualizado.getProprietario());
+        veiculo.setPlaca(veiculoAtualizado.getPlaca());
+        veiculo.setModelo(veiculoAtualizado.getModelo());
+        veiculo.setDataEntrada(veiculoAtualizado.getDataEntrada());
+    
+        return veiculoRepository.save(veiculo);
+    }
+
+    public void remover(String placa){
+        Veiculo veiculo = veiculoRepository.findByPlacaIgnoreCase(placa).orElseThrow(() -> new RuntimeException("Veículo não encontrado."));
+        
+        veiculoRepository.delete(veiculo);
+    }
 }
