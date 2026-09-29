@@ -9,13 +9,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity 
-public class veiculo {
+public class Veiculo {
     
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String propietario;
+    private String proprietario;
 
     private String placa;
 
@@ -32,11 +32,11 @@ public class veiculo {
     }
 
 
-    public String getPropietario(){
-        return propietario;
+    public String getProprietario(){
+        return proprietario;
     }
-    public void setPropietario(String propietario){
-        this.propietario = propietario;
+    public void setProprietario(String proprietario){
+        this.proprietario = proprietario;
     }
 
 
@@ -51,7 +51,7 @@ public class veiculo {
     public String getPlaca(){
         return placa;
     }
-    public void setplaca(String placa){
+    public void setPlaca(String placa){
         this.placa = placa;
     
 
@@ -59,7 +59,7 @@ public class veiculo {
     public LocalDate getDataEntrada(){
         return dataEntrada;
     }
-    public void dataEntrada(LocalDate dataEntrada){
+    public void setDataEntrada(LocalDate dataEntrada){
         this.dataEntrada = dataEntrada;
     }
 }
