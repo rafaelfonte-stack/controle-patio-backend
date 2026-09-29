@@ -3,6 +3,8 @@ package com.controlepatio.controller;
 import com.controlepatio.model.Veiculo;
 import com.controlepatio.service.VeiculoService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +25,9 @@ public class VeiculoController {
     }
 
     @PostMapping("/veiculos")
-    public Veiculo cadastrar(@RequestBody Veiculo veiculo) {
+    public Veiculo cadastrar(
+        @Valid @RequestBody Veiculo veiculo
+    ) {
         return veiculoService.cadastrar(veiculo);
     }
 
@@ -35,7 +39,7 @@ public class VeiculoController {
     @PutMapping("/veiculos/{placa}")
     public Veiculo atualizar(
         @PathVariable String placa,
-        @RequestBody Veiculo veiculo
+        @Valid @RequestBody Veiculo veiculo
     ) {
         return veiculoService.atualizar(placa, veiculo);
     }

@@ -7,6 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity 
 public class Veiculo {
@@ -15,12 +17,16 @@ public class Veiculo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank 
     private String proprietario;
 
+    @NotBlank
     private String placa;
 
+    @NotBlank
     private String modelo;
 
+    @NotNull
     private LocalDate dataEntrada;
 
 
