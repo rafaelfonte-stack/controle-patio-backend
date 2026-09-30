@@ -33,7 +33,9 @@ public class VeiculoService {
 
     public Veiculo atualizar(String placa, Veiculo veiculoAtualizado ){
 
-        Veiculo veiculo = veiculoRepository.findByPlacaIgnoreCase(placa).orElseThrow(() -> new VeiculoNaoEncontradoException("Veículo não encontrado."));
+        String placaNormalizada = placa.trim().toUpperCase();
+
+        Veiculo veiculo = veiculoRepository.findByPlacaIgnoreCase(placaNormalizada).orElseThrow(() -> new VeiculoNaoEncontradoException("Veículo não encontrado."));
         
         String novaPlaca = veiculoAtualizado.getPlaca().trim().toUpperCase();
 
@@ -44,7 +46,7 @@ public class VeiculoService {
         }
 
         veiculo.setProprietario(veiculoAtualizado.getProprietario());
-        veiculo.setPlaca(veiculoAtualizado.getPlaca());
+        veiculo.setPlaca(novaPlaca);
         veiculo.setModelo(veiculoAtualizado.getModelo());
         veiculo.setDataEntrada(veiculoAtualizado.getDataEntrada());
     
@@ -52,7 +54,8 @@ public class VeiculoService {
     }
 
     public void remover(String placa){
-        Veiculo veiculo = veiculoRepository.findByPlacaIgnoreCase(placa).orElseThrow(() -> new VeiculoNaoEncontradoException("Veículo não encontrado."));
+        String placaNormalizada = placa.trim().toUpperCase();
+        Veiculo veiculo = veiculoRepository.findByPlacaIgnoreCase(placaNormalizada).orElseThrow(() -> new VeiculoNaoEncontradoException("Veículo não encontrado."));
         
         veiculoRepository.delete(veiculo);
     }
